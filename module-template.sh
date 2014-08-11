@@ -13,18 +13,22 @@ import UIKit
 
 class OK${uppercase}VM: NSObject {
 
-    weak var wireframe: OK${uppercase}Wireframe?
+    var delegate: ${uppercase}VMDelegate?
     weak var userInterface: OK${uppercase}ViewController?
     let dataManager: OK${uppercase}DataManager
 
 
     // Initialization
 
-    init(wireframe: OK${uppercase}Wireframe, userInterface: OK${uppercase}ViewController, dataManager: OK${uppercase}DataManager) {
-        self.wireframe = wireframe
+    init(userInterface: OK${uppercase}ViewController, dataManager: OK${uppercase}DataManager) {
         self.userInterface = userInterface
         self.dataManager = dataManager
     }
+
+}
+
+@class_protocol protocol ${uppercase}VMDelegate {
+
 }
 EOF
 
@@ -39,7 +43,7 @@ EOF
 cat <<EOF > OK${uppercase}Wireframe.swift
 import UIKit
 
-class OK${uppercase}Wireframe: NSObject {
+class OK${uppercase}Wireframe: NSObject, ${uppercase}VMDelegate {
 
     let ${lowercase}ViewController = OK${uppercase}ViewController()
     let applicationWireframe: OKApplicationWireframe
@@ -54,7 +58,8 @@ class OK${uppercase}Wireframe: NSObject {
         super.init()
 
         var dataManager = OK${uppercase}DataManager()
-        var vm = OK${uppercase}VM(wireframe: self, userInterface: ${lowercase}ViewController, dataManager: dataManager)
+        var vm = OK${uppercase}VM(userInterface: ${lowercase}ViewController, dataManager: dataManager)
+        vm.delegate = self
         ${lowercase}ViewController.eventHandler = vm
     }
 
