@@ -66,10 +66,12 @@ class OK${uppercase}Wireframe: NSObject, ${uppercase}VMDelegate {
     // Public methods
 
     func routeOntoBaseViewController(baseViewController: UIViewController) {
-        self.baseViewController = baseViewController
-        if !self.baseViewController?.presentedViewController {
-            self.baseViewController!.presentViewController(${lowercase}ViewController, animated: false, completion: nil)
+        if baseViewController.presentedViewController {
+            return
         }
+
+        self.baseViewController = baseViewController
+        self.baseViewController!.presentViewController(${lowercase}ViewController, animated: false, completion: nil)
     }
 
     func dismiss() {
