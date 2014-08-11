@@ -45,7 +45,7 @@ import UIKit
 
 class OK${uppercase}Wireframe: NSObject, ${uppercase}VMDelegate {
 
-    let ${lowercase}ViewController = OK${uppercase}ViewController()
+    let ${lowercase}ViewController = OK${uppercase}ViewController(nibName: "OK${uppercase}ViewController", bundle: nil)
     let applicationWireframe: OKApplicationWireframe
     var baseViewController: UIViewController?
 
