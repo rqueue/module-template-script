@@ -67,7 +67,7 @@ class OK${uppercase}Wireframe: NSObject, ${uppercase}VMDelegate {
 
     func routeOntoBaseViewController(baseViewController: UIViewController) {
         self.baseViewController = baseViewController
-        if !self.baseViewController?.presentingViewController {
+        if !self.baseViewController?.presentedViewController {
             self.baseViewController!.presentViewController(${lowercase}ViewController, animated: false, completion: nil)
         }
     }
