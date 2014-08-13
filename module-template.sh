@@ -13,7 +13,7 @@ import UIKit
 
 class OK${uppercase}VM: NSObject {
 
-    var delegate: ${uppercase}VMDelegate?
+    weak var delegate: ${uppercase}VMDelegate?
     weak var userInterface: OK${uppercase}ViewController?
     let dataManager: OK${uppercase}DataManager
 
@@ -27,7 +27,7 @@ class OK${uppercase}VM: NSObject {
 
 }
 
-@class_protocol protocol ${uppercase}VMDelegate {
+@objc protocol ${uppercase}VMDelegate {
 
 }
 EOF
