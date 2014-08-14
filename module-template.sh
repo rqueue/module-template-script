@@ -52,6 +52,10 @@ class OK${uppercase}Wireframe: NSObject, ${uppercase}VMDelegate {
 
     // Initialization
 
+    func viewController() -> UIViewController {
+        return ${lowercase}ViewController
+     }
+
     init(applicationWireframe: OKApplicationWireframe) {
         self.applicationWireframe = applicationWireframe
 
@@ -65,19 +69,22 @@ class OK${uppercase}Wireframe: NSObject, ${uppercase}VMDelegate {
 
     // Public methods
 
-    func routeOntoBaseViewController(baseViewController: UIViewController) {
+    func routeOntoBaseViewController(baseViewController: UIViewController,
+    animated: Bool, completion: (()->())?) {
         if baseViewController.presentedViewController {
             return
         }
 
         self.baseViewController = baseViewController
-        self.baseViewController!.presentViewController(${lowercase}ViewController, animated: false, completion: nil)
+        self.baseViewController!.presentViewController(${lowercase}ViewController,
+        animated: animated, completion: completion)
     }
 
-    func dismiss() {
-        self.baseViewController?.dismissViewControllerAnimated(false, completion: nil)
+    func dismiss(#animated: Bool, completion: (()->())?) {
+        self.baseViewController?.dismissViewControllerAnimated(animated,
+        completion: completion)
     }
-   
+
 }
 EOF
 
