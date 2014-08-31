@@ -43,7 +43,7 @@ EOF
 cat <<EOF > OK${uppercase}Wireframe.swift
 import UIKit
 
-class OK${uppercase}Wireframe: NSObject, ${uppercase}VMDelegate {
+class OK${uppercase}Wireframe: NSObject, OK${uppercase}VMDelegate {
 
     let ${lowercase}ViewController = OK${uppercase}ViewController(nibName: "OK${uppercase}ViewController", bundle: nil)
     let applicationWireframe: OKApplicationWireframe
