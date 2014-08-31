@@ -81,7 +81,7 @@ class OK${uppercase}Wireframe: NSObject, OK${uppercase}VMDelegate {
     }
 
     func dismiss(#animated: Bool, completion: (()->())?) {
-        self.baseViewController?.dismissViewControllerAnimated(animated,
+        baseViewController?.dismissViewControllerAnimated(animated,
         completion: completion)
     }
 
