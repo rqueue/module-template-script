@@ -71,7 +71,7 @@ class OK${uppercase}Wireframe: NSObject, OK${uppercase}VMDelegate {
 
     func routeOntoBaseViewController(baseViewController: UIViewController,
     animated: Bool, completion: (()->())?) {
-        if baseViewController.presentedViewController {
+        if baseViewController.presentedViewController != nil {
             return
         }
 
