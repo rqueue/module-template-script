@@ -1,6 +1,7 @@
 #!/bin/bash
 
-module=$1
+prefix=$1
+module=$2
 
 uppercase=$(echo $(echo ${module:0:1} | tr '[:lower:]' '[:upper:]')$(echo ${module:1}))
 lowercase=$(echo $(echo ${module:0:1} | tr '[:upper:]' '[:lower:]')$(echo ${module:1}))
@@ -8,45 +9,45 @@ lowercase=$(echo $(echo ${module:0:1} | tr '[:upper:]' '[:lower:]')$(echo ${modu
 mkdir ${uppercase}
 cd ${uppercase}
 
-cat <<EOF > OK${uppercase}VM.swift
+cat <<EOF > ${prefix}${uppercase}VM.swift
 import UIKit
 
-class OK${uppercase}VM: NSObject {
+class ${prefix}${uppercase}VM: NSObject {
 
-    weak var delegate: OK${uppercase}VMDelegate?
-    weak var userInterface: OK${uppercase}ViewController?
-    let dataManager: OK${uppercase}DataManager
+    weak var delegate: ${prefix}${uppercase}VMDelegate?
+    weak var userInterface: ${prefix}${uppercase}ViewController?
+    let dataManager: ${prefix}${uppercase}DataManager
 
 
     // Initialization
 
-    init(userInterface: OK${uppercase}ViewController, dataManager: OK${uppercase}DataManager) {
+    init(userInterface: ${prefix}${uppercase}ViewController, dataManager: ${prefix}${uppercase}DataManager) {
         self.userInterface = userInterface
         self.dataManager = dataManager
     }
 
 }
 
-@objc protocol OK${uppercase}VMDelegate {
+@objc protocol ${prefix}${uppercase}VMDelegate {
 
 }
 EOF
 
-cat <<EOF > OK${uppercase}DataManager.swift
+cat <<EOF > ${prefix}${uppercase}DataManager.swift
 import UIKit
 
-class OK${uppercase}DataManager: NSObject {
+class ${prefix}${uppercase}DataManager: NSObject {
 
 }
 EOF
 
-cat <<EOF > OK${uppercase}Wireframe.swift
+cat <<EOF > ${prefix}${uppercase}Wireframe.swift
 import UIKit
 
-class OK${uppercase}Wireframe: NSObject, OK${uppercase}VMDelegate {
+class ${prefix}${uppercase}Wireframe: NSObject, ${prefix}${uppercase}VMDelegate {
 
-    let ${lowercase}ViewController = OK${uppercase}ViewController(nibName: "OK${uppercase}ViewController", bundle: nil)
-    let applicationWireframe: OKApplicationWireframe
+    let ${lowercase}ViewController = ${prefix}${uppercase}ViewController(nibName: "${prefix}${uppercase}ViewController", bundle: nil)
+    let applicationWireframe: ${prefix}ApplicationWireframe
     var baseViewController: UIViewController?
 
 
@@ -56,13 +57,13 @@ class OK${uppercase}Wireframe: NSObject, OK${uppercase}VMDelegate {
         return ${lowercase}ViewController
      }
 
-    init(applicationWireframe: OKApplicationWireframe) {
+    init(applicationWireframe: ${prefix}ApplicationWireframe) {
         self.applicationWireframe = applicationWireframe
 
         super.init()
 
-        var dataManager = OK${uppercase}DataManager()
-        var vm = OK${uppercase}VM(userInterface: ${lowercase}ViewController, dataManager: dataManager)
+        var dataManager = ${prefix}${uppercase}DataManager()
+        var vm = ${prefix}${uppercase}VM(userInterface: ${lowercase}ViewController, dataManager: dataManager)
         vm.delegate = self
         ${lowercase}ViewController.eventHandler = vm
     }
@@ -88,24 +89,24 @@ class OK${uppercase}Wireframe: NSObject, OK${uppercase}VMDelegate {
 }
 EOF
 
-cat <<EOF > OK${uppercase}ViewController.swift
+cat <<EOF > ${prefix}${uppercase}ViewController.swift
 import UIKit
 
-class OK${uppercase}ViewController: UIViewController {
+class ${prefix}${uppercase}ViewController: UIViewController {
 
-    var eventHandler: OK${uppercase}VM?
+    var eventHandler: ${prefix}${uppercase}VM?
 
 }
 EOF
 
-cat <<EOF > OK${uppercase}ViewController.xib
+cat <<EOF > ${prefix}${uppercase}ViewController.xib
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6154.21" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.13"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OK${uppercase}ViewController" customModule="OkAlright" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="${prefix}${uppercase}ViewController" customModule="OkAlright" customModuleProvider="target">
             <connections>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
