@@ -15,8 +15,8 @@ import UIKit
 class ${prefix}${uppercase}VM: NSObject {
 
     weak var delegate: ${prefix}${uppercase}VMDelegate?
-    weak var userInterface: ${prefix}${uppercase}ViewController?
-    let dataManager: ${prefix}${uppercase}DataManager
+    private weak var userInterface: ${prefix}${uppercase}ViewController?
+    private let dataManager: ${prefix}${uppercase}DataManager
 
 
     // Initialization
@@ -46,9 +46,9 @@ import UIKit
 
 class ${prefix}${uppercase}Wireframe: NSObject, ${prefix}${uppercase}VMDelegate {
 
-    let ${lowercase}ViewController = ${prefix}${uppercase}ViewController(nibName: "${prefix}${uppercase}ViewController", bundle: nil)
-    let applicationWireframe: ${prefix}ApplicationWireframe
-    var baseViewController: UIViewController?
+    private let ${lowercase}ViewController = ${prefix}${uppercase}ViewController(nibName: "${prefix}${uppercase}ViewController", bundle: nil)
+    private let applicationWireframe: ${prefix}ApplicationWireframe
+    private var baseViewController: UIViewController?
 
 
     // Initialization
